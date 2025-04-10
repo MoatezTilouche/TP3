@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: nginx:alpine
+    ports:
+      - "8081:80"
+    volumes:
+      - ./web-content:/usr/share/nginx/html
+
+  redis:
+    image: redis:alpine
+    ports:
+      - "6379:6379"
