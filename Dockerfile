@@ -1,9 +1,15 @@
 # Use the official Nginx image as the base image
 FROM nginx:alpine
 
-# Copy the custom web page into the Nginx default directory
+# Install curl for testing (important for run-tests.sh)
+RUN apk add --no-cache curl
 
+# Copy the custom web page
 COPY index.html /usr/share/nginx/html/index.html
 
-# Expose port 80 for the web server
+# Copy the test script
+COPY run-tests.sh /run-tests.sh
+RUN chmod +x /run-tests.sh
+
+# Expose port 80
 EXPOSE 80
