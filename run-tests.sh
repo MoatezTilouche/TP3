@@ -2,7 +2,13 @@
 
 echo "✅ Starting tests..."
 
-# Nginx démarre automatiquement avec l'image, testons la page
+# Démarrer Nginx en arrière-plan
+nginx &
+
+# Attendre que Nginx soit prêt
+sleep 2
+
+# Tester la page d’accueil
 HTTP_STATUS=$(curl -s -o /dev/null -w "%{http_code}" http://localhost)
 
 if [ "$HTTP_STATUS" = "200" ]; then

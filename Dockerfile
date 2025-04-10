@@ -1,15 +1,15 @@
-# Use the official Nginx image as the base image
+# Utilise l'image Nginx officielle
 FROM nginx:alpine
 
-# Install curl for testing (important for run-tests.sh)
+# Installe curl pour les tests
 RUN apk add --no-cache curl
 
-# Copy the custom web page
-COPY index.html /usr/share/nginx/html/index.html
+# Copie la page HTML personnalisée depuis le dossier webapp
+COPY web-content/index.html /usr/share/nginx/html/index.html
 
-# Copy the test script
+# Copie le script de test
 COPY run-tests.sh /run-tests.sh
 RUN chmod +x /run-tests.sh
 
-# Expose port 80
+# Expose le port 80
 EXPOSE 80
